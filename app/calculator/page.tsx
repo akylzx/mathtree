@@ -40,7 +40,7 @@ export default function CalculatorPage() {
         setWaitingForOperand(false)
         return
       }
-      setCurrentValue(result)
+      setCurrentValue(result as number)
       setDisplay(String(result))
     }
     setWaitingForOperand(true)
