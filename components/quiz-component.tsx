@@ -12,9 +12,10 @@ interface Question {
 
 interface QuizComponentProps {
   questions: Question[]
+  onComplete: () => void // Add this prop
 }
 
-export function QuizComponent({ questions }: QuizComponentProps) {
+export function QuizComponent({ questions, onComplete }: QuizComponentProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
   const [showResult, setShowResult] = useState(false)
@@ -40,6 +41,7 @@ export function QuizComponent({ questions }: QuizComponentProps) {
       setSelectedAnswer(null)
     } else {
       setShowResult(true)
+      onComplete() // Call onComplete here when quiz is finished
     }
   }
 
