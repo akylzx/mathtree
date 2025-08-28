@@ -5,8 +5,16 @@ import { LessonCard } from "@/components/lesson-card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
+interface TopicLessonItem {
+  id: number;
+  title: string;
+  description: string;
+  completed: boolean;
+  locked: boolean;
+}
+
 // Temporary mock data for lessons under a topic
-const topicLessons: Record<string, any[]> = {
+const topicLessons: Record<string, TopicLessonItem[]> = {
   "place-value": [
     { id: 1, title: "Бірлік, Ондық, Жүздіктер", description: "Сандардың орнын үйрен", completed: true, locked: false },
     { id: 2, title: "Сандарды оқу", description: "Үш таңбалы сандарды қалай оқу керектігін біл", completed: false, locked: false },

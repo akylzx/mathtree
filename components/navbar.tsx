@@ -11,9 +11,9 @@ export function Navbar() {
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-lg">
             🧮
           </div>
-          <a href="/" className="font-bold text-xl text-primary">
+          <Link href="/" className="font-bold text-xl text-primary">
             Математика Ағашы
-          </a>
+          </Link>
         </div>
 
         <div className="hidden md:flex items-center space-x-6">

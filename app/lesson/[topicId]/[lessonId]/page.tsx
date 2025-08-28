@@ -6,7 +6,19 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
-const lessonContent: Record<string, any> = {
+interface Question {
+  question: string;
+  options: string[];
+  correct: number;
+}
+
+interface LessonContentItem {
+  title: string;
+  content: string;
+  questions: Question[];
+}
+
+const lessonContent: Record<string, LessonContentItem> = {
   // Place Value Lessons
   "place-value-1": {
     title: "Бірлік, Ондық, Жүздіктер",

@@ -1,8 +1,13 @@
 import { type NextRequest, NextResponse } from "next/server"
 
+interface ChatHistoryMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const { message, history } = await request.json()
+    const { message, history }: { message: string; history: ChatHistoryMessage[] } = await request.json()
 
     // Check if Gemini API key is available
     const apiKey = process.env.GEMINI_API_KEY;
@@ -20,7 +25,7 @@ export async function POST(request: NextRequest) {
     const systemPrompt = ` "Сенің атың – Көмекші. Сен қазақ тілінде 3-сынып оқушыларына арналған жасанды интеллект чат-ботсың. Сенің міндетің – математика есептерін шығарып, түсіндіріп беру және математикаға қатысты сұрақтарға жауап беру. Балаларға қарапайым тілде, қысқа әрі түсінікті түрде жауап бер. Әрбір шешімді қадам-қадамымен көрсетіп түсіндір. Оқушы қателессе, жұмсақ түрде түзетіп, дұрыс шешуге бағыт бер.`
 
     // Build conversation history for context
-    const conversationHistory = history.slice(-5).map((msg: any) => ({
+    const conversationHistory = history.slice(-5).map((msg: ChatHistoryMessage) => ({
       role: msg.role === "user" ? "user" : "model",
       parts: [{ text: msg.content }],
     }))
