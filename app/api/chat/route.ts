@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
     const { message, history } = await request.json()
 
     // Check if Gemini API key is available
-    const apiKey = "AIzaSyA0bl-8K9NbR3SDxQmK_lWqsEkJSpmhVBU"
+    const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       return NextResponse.json(
         {
